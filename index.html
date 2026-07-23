@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Karou Diallo</title>
+<meta name="description" content="Papa Abdou Karim Karou Diallo — Ph.D. student at Mila and Polytechnique Montréal working on knowledge base question answering, SPARQL query generation, and language models with external memory.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#ffffff;
+  --bg-alt:#f7f7f5;
+  --text:#16181d;
+  --muted:#6a7080;
+  --line:#e4e4e0;
+  --accent:#1d5c7a;
+  --accent-soft:#e8f1f5;
+  --radius:10px;
+  --maxw:820px;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#121317; --bg-alt:#191b20; --text:#e9e9e6; --muted:#9aa1af;
+    --line:#2a2d34; --accent:#7fc0dd; --accent-soft:#1b2b33;
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;
+}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
+img{max-width:100%;display:block}
+
+/* ---------- Navigation ---------- */
+.nav{
+  position:sticky;top:0;z-index:50;
+  background:color-mix(in srgb,var(--bg) 85%,transparent);
+  backdrop-filter:saturate(180%) blur(12px);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{
+  max-width:var(--maxw);margin:0 auto;padding:14px 24px;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+}
+.brand{font-weight:600;color:var(--text);letter-spacing:-.01em}
+.brand:hover{text-decoration:none;color:var(--accent)}
+.nav-links{display:flex;gap:22px}
+.nav-links a{color:var(--muted);font-size:.92rem;font-weight:500}
+.nav-links a:hover{color:var(--text);text-decoration:none}
+.burger{display:none;background:none;border:0;color:var(--text);font-size:1.3rem;cursor:pointer;padding:4px 8px}
+@media (max-width:640px){
+  .nav-links{
+    display:none;position:absolute;top:100%;left:0;right:0;
+    flex-direction:column;gap:0;background:var(--bg);
+    border-bottom:1px solid var(--line);padding:8px 24px 16px;
+  }
+  .nav-links.open{display:flex}
+  .nav-links a{padding:10px 0;border-bottom:1px solid var(--line)}
+  .nav-links a:last-child{border-bottom:0}
+  .burger{display:block}
+}
+
+/* ---------- Layout ---------- */
+main{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+section{padding:56px 0;border-top:1px solid var(--line)}
+section:first-of-type{border-top:0}
+h1{font-family:"Newsreader",Georgia,serif;font-size:2.4rem;font-weight:600;letter-spacing:-.02em;margin:0 0 18px;line-height:1.15}
+h2{
+  font-size:.78rem;font-weight:600;text-transform:uppercase;letter-spacing:.14em;
+  color:var(--muted);margin:0 0 28px;
+}
+h3{font-size:1.06rem;font-weight:600;margin:0 0 6px;line-height:1.45;letter-spacing:-.01em}
+h3 a{color:var(--text)}
+h3 a:hover{color:var(--accent)}
+p{margin:0 0 14px}
+
+/* ---------- Hero ---------- */
+.hero{display:flex;gap:40px;align-items:flex-start;padding:64px 0 56px}
+.hero-text{flex:1;min-width:0}
+.photo{width:160px;flex-shrink:0}
+.photo img{
+  border-radius:var(--radius);aspect-ratio:1/1;object-fit:cover;
+  background:var(--bg-alt);border:1px solid var(--line);
+}
+.meta{font-size:.93rem;color:var(--muted);margin:0 0 4px}
+.meta strong{color:var(--text);font-weight:600}
+@media (max-width:640px){
+  .hero{flex-direction:column-reverse;gap:24px;padding:40px 0}
+  .photo{width:120px}
+  h1{font-size:1.95rem}
+}
+
+/* ---------- Entries (publications, roles) ---------- */
+.item{display:flex;gap:24px;padding:22px 0;border-bottom:1px solid var(--line)}
+.item:last-child{border-bottom:0}
+.item:first-of-type{padding-top:0}
+.side{width:150px;flex-shrink:0}
+.side .year{font-size:.82rem;font-weight:600;color:var(--text);letter-spacing:.02em}
+.side .venue{font-size:.82rem;color:var(--muted);line-height:1.45}
+.item-body{flex:1;min-width:0}
+.authors{font-size:.9rem;color:var(--muted);margin:0 0 8px}
+.authors strong{color:var(--text);font-weight:600}
+.tldr{font-size:.94rem;margin:0 0 10px}
+.tldr strong{font-weight:600}
+.links{font-size:.88rem;color:var(--muted);margin:0}
+.links a+a::before{content:" · ";color:var(--muted)}
+.tag{
+  display:inline-block;margin-top:10px;padding:2px 9px;border-radius:999px;
+  background:var(--accent-soft);color:var(--accent);
+  font-size:.73rem;font-weight:500;letter-spacing:.03em;
+}
+.status{
+  display:inline-block;margin-left:8px;padding:1px 8px;border-radius:4px;
+  border:1px solid var(--line);color:var(--muted);
+  font-size:.7rem;font-weight:500;text-transform:uppercase;letter-spacing:.08em;
+  vertical-align:middle;
+}
+@media (max-width:640px){
+  .item{flex-direction:column;gap:8px}
+  .side{width:100%;display:flex;gap:8px;align-items:baseline}
+  .side .venue::before{content:"· "}
+}
+
+/* ---------- News & education lists ---------- */
+.row{padding:12px 0;border-bottom:1px solid var(--line);font-size:.95rem}
+.row:last-child{border-bottom:0}
+.row .when{font-weight:600}
+
+/* ---------- Footer ---------- */
+footer{
+  border-top:1px solid var(--line);margin-top:24px;padding:28px 24px 48px;
+  text-align:center;font-size:.85rem;color:var(--muted);
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#">Karou Diallo</a>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="navlinks">☰</button>
+    <div class="nav-links" id="navlinks">
+      <a href="#publications">Publications</a>
+      <a href="#news">News</a>
+      <a href="#teaching">Teaching &amp; Outreach</a>
+      <a href="#background">Background</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Hi, I am Karou.</h1>
+      <p>
+        I am a Ph.D. student at <a href="https://mila.quebec/en">Mila</a> and
+        <a href="https://www.polymtl.ca/en/">Polytechnique Montréal</a>, advised by
+        <a href="https://mila.quebec/en/directory/amal-zouaq">Amal Zouaq</a> in the LAMA-WeST lab.
+        I work on knowledge base question answering: teaching language models to turn a natural
+        question into a precise SPARQL query, and to keep doing so when the wording changes.
+      </p>
+      <p>
+        More broadly, I want to give language models an external memory they can be held accountable
+        to — non-parametric, up to date, and controllable — so that answers can be traced back to a
+        source instead of hallucinated.
+      </p>
+      <p class="meta"><strong>Contact:</strong> <a href="mailto:karou.diallo@mila.quebec">karou.diallo [at] mila.quebec</a></p>
+      <!-- Replace the # below with your real profile URLs, or delete the ones you don't use -->
+      <p class="meta"><strong>Elsewhere:</strong> <a href="#">Google Scholar</a> · <a href="#">GitHub</a> · <a href="#">LinkedIn</a> · <a href="#">CV</a></p>
+    </div>
+    <div class="photo">
+      <img src="images/me.png" alt="Portrait of Karou Diallo" width="600" height="600">
+    </div>
+  </section>
+
+  <!-- ============ PUBLICATIONS ============ -->
+  <section id="publications">
+    <h2>Publications</h2>
+
+    <article class="item">
+      <div class="side">
+        <div class="year">2026</div>
+        <div class="venue">EMNLP</div>
+      </div>
+      <div class="item-body">
+        <h3><a href="https://arxiv.org/abs/2606.00203">DeSQ: Decomposition-based SPARQL Query Generation</a><span class="status">Under review</span></h3>
+        <p class="authors"><strong>Papa Abdou Karim Karou Diallo</strong> et al.</p>
+        <p class="tldr"><strong>TL;DR:</strong> Breaking a question into sub-queries before generating SPARQL makes complex queries easier for a model to get right.</p>
+        <p class="links">Under review at EMNLP 2026, Budapest · <a href="https://arxiv.org/abs/2606.00203">Paper</a></p>
+        <span class="tag">semantic parsing</span>
+      </div>
+    </article>
+
+    <article class="item">
+      <div class="side">
+        <div class="year">2026</div>
+        <div class="venue">LREC</div>
+      </div>
+      <div class="item-body">
+        <h3><a href="https://lrec.elra.info/lrec2026-main-101">FRASE: Structured Representations for Generalizable SPARQL Query Generation</a></h3>
+        <p class="authors"><strong>Papa Abdou Karim Karou Diallo</strong>, Amal Zouaq</p>
+        <p class="tldr"><strong>TL;DR:</strong> Frame-based structured representations help SPARQL generation survive the lexical variation of real user questions.</p>
+        <p class="links">LREC 2026, Palma · <a href="https://lrec.elra.info/lrec2026-main-101">Paper</a></p>
+        <span class="tag">semantic parsing</span>
+      </div>
+    </article>
+
+    <article class="item">
+      <div class="side">
+        <div class="year">2025</div>
+        <div class="venue">NLDM</div>
+      </div>
+      <div class="item-body">
+        <h3><a href="https://arxiv.org/abs/2502.12210">Enhancing Frame Detection with Retrieval Augmented Generation</a></h3>
+        <p class="authors"><strong>Papa Abdou Karim Karou Diallo</strong>, Amal Zouaq</p>
+        <p class="tldr"><strong>TL;DR:</strong> Retrieving candidate frames before generation improves frame detection over purely parametric approaches.</p>
+        <p class="links">NLDM 2025, Copenhagen · <a href="https://arxiv.org/abs/2502.12210">Paper</a></p>
+        <span class="tag">retrieval-augmented generation</span>
+      </div>
+    </article>
+
+    <article class="item">
+      <div class="side">
+        <div class="year">2024</div>
+        <div class="venue">IEEE Access</div>
+      </div>
+      <div class="item-body">
+        <h3><a href="https://ieeexplore.ieee.org/abstract/document/10662970">A Comprehensive Evaluation of Neural SPARQL Query Generation from Natural Language Questions</a></h3>
+        <p class="authors"><strong>Papa Abdou Karim Karou Diallo</strong>, Samuel Reyd, Amal Zouaq</p>
+        <p class="tldr"><strong>TL;DR:</strong> A systematic comparison of neural SPARQL generation methods, and what actually drives their performance.</p>
+        <p class="links">IEEE Access, 2024 · <a href="https://ieeexplore.ieee.org/abstract/document/10662970">Paper</a></p>
+        <span class="tag">semantic parsing</span>
+      </div>
+    </article>
+
+    <article class="item">
+      <div class="side">
+        <div class="year">2020</div>
+        <div class="venue">IEEE ICCC</div>
+      </div>
+      <div class="item-body">
+        <h3><a href="https://ieeexplore.ieee.org/document/9344949/">Accurate Detection of COVID-19 Using K-EfficientNet Deep Learning Image Classifier and K-COVID Chest X-Ray Images Dataset</a></h3>
+        <p class="authors"><strong>Papa Abdou Karim Karou Diallo</strong>, Yun Ju</p>
+        <p class="tldr"><strong>TL;DR:</strong> An EfficientNet-based classifier and a curated chest X-ray dataset for COVID-19 detection.</p>
+        <p class="links">IEEE ICCC 2020, Chengdu · <a href="https://ieeexplore.ieee.org/document/9344949/">Paper</a></p>
+        <span class="tag">computer vision</span>
+      </div>
+    </article>
+
+  </section>
+
+  <!-- ============ NEWS ============ -->
+  <section id="news">
+    <h2>News</h2>
+    <div class="row"><span class="when">May 2026:</span> DeSQ is under review at <a href="https://2026.emnlp.org">EMNLP 2026</a> in Budapest.</div>
+    <div class="row"><span class="when">March 2026:</span> FRASE was published at <a href="https://lrec2026.info">LREC 2026</a> in Palma.</div>
+    <div class="row"><span class="when">January 2026:</span> I joined Mila as a <a href="https://mila.quebec/en/prospective-students/student-life-and-resources/lab-representatives">Lab Representative</a>.</div>
+    <div class="row"><span class="when">September 2025:</span> I started as an AI Educator with IVADO, running public AI workshops in libraries across Quebec.</div>
+    <div class="row"><span class="when">February 2025:</span> Our work on frame detection with RAG was published at NLDM 2025 in Copenhagen.</div>
+  </section>
+
+  <!-- ============ TEACHING & OUTREACH ============ -->
+  <section id="teaching">
+    <h2>Teaching &amp; Outreach</h2>
+
+    <article class="item">
+      <div class="side">
+        <div class="year">2025 —</div>
+        <div class="venue">IVADO</div>
+      </div>
+      <div class="item-body">
+        <h3>AI Educator, Public Libraries of Quebec</h3>
+        <p class="tldr">I run <a href="https://drive.google.com/file/d/1un19PVUMSJ1lPh996mn5HXHiT2p_tUUu/view?usp=sharing">public workshops</a> in libraries across Quebec on how AI works, where it is heading, and how to use it responsibly — for audiences with no technical background.</p>
+        <p class="links"><a href="https://ivado.ca/2025/04/30/les-bibliotheques-de-montreal-pour-democratiser-lia/">Read about the program</a></p>
+      </div>
+    </article>
+
+    <article class="item">
+      <div class="side">
+        <div class="year">2026 —</div>
+        <div class="venue">Mila</div>
+      </div>
+      <div class="item-body">
+        <h3>Lab Representative</h3>
+        <p class="tldr">I carry student feedback to Mila's administration and work on initiatives around student well-being, inclusion, and community life.</p>
+      </div>
+    </article>
+
+    <article class="item">
+      <div class="side">
+        <div class="year">2024 – 2026</div>
+        <div class="venue">Polytechnique</div>
+      </div>
+      <div class="item-body">
+        <h3>Teaching Assistant, INF8460 — Natural Language Processing</h3>
+        <p class="tldr">Designed assignments and tutorials, ran lab sessions, and graded coursework and exams.</p>
+      </div>
+    </article>
+
+    <article class="item">
+      <div class="side">
+        <div class="year">2021 – 2022</div>
+        <div class="venue">Beijing</div>
+      </div>
+      <div class="item-body">
+        <h3>Coding Teacher, Lycée Français International Charles de Gaulle</h3>
+        <p class="tldr">Taught programming with Arduino and Scratch, and built hands-on projects that let students apply each concept right after learning it.</p>
+      </div>
+    </article>
+
+  </section>
+
+  <!-- ============ BACKGROUND ============ -->
+  <section id="background">
+    <h2>Background</h2>
+    <div class="row"><span class="when">2022 —</span> Ph.D. in Computer Science, Polytechnique Montréal &amp; Mila, Canada</div>
+    <div class="row"><span class="when">2022</span> M.Sc. in Computer Science, North China Electric Power University, China</div>
+    <div class="row"><span class="when">2019</span> B.Sc. in Computer Science, Amadou Hampâté Bâ University, Senegal</div>
+
+    <p style="margin-top:28px" class="meta">
+      Before research, I worked as a full-stack developer in Dakar — building a mail management
+      system for the city hall and mobile applications at aCAN Group — and as a research assistant
+      in Beijing, where I built a medical knowledge graph and the question answering system on top
+      of it. That project is where my interest in knowledge bases started.
+    </p>
+    <p class="meta"><strong>Languages:</strong> Wolof, French, English (fluent) · Chinese, Arabic (basic)</p>
+  </section>
+
+</main>
+
+<footer>© 2026 Papa Abdou Karim Karou Diallo</footer>
+
+<script>
+  const burger = document.getElementById('burger');
+  const links = document.getElementById('navlinks');
+  burger.addEventListener('click', () => {
+    const open = links.classList.toggle('open');
+    burger.setAttribute('aria-expanded', open);
+    burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  });
+  links.addEventListener('click', e => {
+    if (e.target.tagName === 'A') {
+      links.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+    }
+  });
+</script>
+
+</body>
+</html>
