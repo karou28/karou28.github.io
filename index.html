@@ -99,7 +99,7 @@ section:first-of-type{border-top:0}
 h1{font-family:"Newsreader",Georgia,serif;font-size:2.4rem;font-weight:600;letter-spacing:-.02em;margin:0 0 18px;line-height:1.15}
 h2{
   font-size:.78rem;font-weight:600;text-transform:uppercase;letter-spacing:.14em;
-  color:var(--muted);margin:0 0 28px;
+  color:var(--muted);margin:0 0 14px;
 }
 h3{font-size:1.06rem;font-weight:600;margin:0 0 6px;line-height:1.45;letter-spacing:-.01em}
 h3 a{color:var(--text)}
@@ -123,12 +123,23 @@ p{margin:0 0 14px}
 }
 
 /* ---------- Entries (publications, roles) ---------- */
-.item{display:flex;gap:24px;padding:22px 0;border-bottom:1px solid var(--line)}
+.item{
+  display:flex;gap:24px;
+  padding:22px 18px;margin:0 -18px;      /* deborde du texte pour la surbrillance */
+  border-bottom:1px solid var(--line);border-radius:12px;
+  transition:background-color .25s ease;
+}
 .item:last-child{border-bottom:0}
-.item:first-of-type{padding-top:0}
-.side{width:150px;flex-shrink:0}
-.side .year{font-size:.82rem;font-weight:600;color:var(--text);letter-spacing:.02em}
-.side .venue{font-size:.82rem;color:var(--muted);line-height:1.45}
+@media (hover:hover){
+  .item:hover{background-color:var(--bg-alt)}
+}
+.thumb{width:180px;flex-shrink:0}
+.thumb img{
+  display:block;width:100%;aspect-ratio:16/10;object-fit:cover;
+  border-radius:8px;border:1px solid var(--line);background:var(--bg-alt);
+}
+.stamp{font-size:.82rem;color:var(--muted);margin:0 0 6px}
+.stamp b{color:var(--text);font-weight:600}
 .item-body{flex:1;min-width:0}
 .authors{font-size:.9rem;color:var(--muted);margin:0 0 8px}
 .authors strong{color:var(--text);font-weight:600}
@@ -148,9 +159,8 @@ p{margin:0 0 14px}
   vertical-align:middle;
 }
 @media (max-width:640px){
-  .item{flex-direction:column;gap:8px}
-  .side{width:100%;display:flex;gap:8px;align-items:baseline}
-  .side .venue::before{content:"· "}
+  .item{flex-direction:column;gap:14px}
+  .thumb{width:100%}
 }
 
 /* ---------- News & education lists ---------- */
@@ -208,7 +218,7 @@ footer{
       <p class="meta"><strong>Elsewhere:</strong> <a href="https://scholar.google.com/citations?user=XAIiidIAAAAJ&amp;hl=en">Google Scholar</a> · <a href="https://github.com/karou28">GitHub</a> · <a href="https://www.linkedin.com/in/karou-diallo-9240a417b/">LinkedIn</a> · <a href="https://www.overleaf.com/read/fngnshywkszf#a6decd">CV</a></p>
     </div>
     <div class="photo">
-      <img src="images/me.png" alt="Portrait of Karou Diallo" width="640" height="640">
+      <img src="images/me2.png" alt="Portrait of Karou Diallo" width="640" height="640">
     </div>
   </section>
 
@@ -217,11 +227,11 @@ footer{
     <h2>Publications</h2>
 
     <article class="item">
-      <div class="side">
-        <div class="year">2026</div>
-        <div class="venue">EMNLP</div>
+      <div class="thumb">
+        <a href="https://arxiv.org/abs/2606.00203"><img src="images/pub-desq.png" alt="DeSQ figure"></a>
       </div>
       <div class="item-body">
+        <p class="stamp"><b>2026</b> · EMNLP</p>
         <h3><a href="https://arxiv.org/abs/2606.00203">DeSQ: Decomposition-based SPARQL Query Generation</a><span class="status">Under review</span></h3>
         <p class="authors"><strong>Papa Abdou Karim Karou Diallo</strong> et al.</p>
         <p class="tldr"><strong>TL;DR:</strong> Breaking a question into sub-queries before generating SPARQL makes complex queries easier for a model to get right.</p>
@@ -231,11 +241,11 @@ footer{
     </article>
 
     <article class="item">
-      <div class="side">
-        <div class="year">2026</div>
-        <div class="venue">LREC</div>
+      <div class="thumb">
+        <a href="https://lrec.elra.info/lrec2026-main-101"><img src="images/pub-frase.png" alt="FRASE figure"></a>
       </div>
       <div class="item-body">
+        <p class="stamp"><b>2026</b> · LREC</p>
         <h3><a href="https://lrec.elra.info/lrec2026-main-101">FRASE: Structured Representations for Generalizable SPARQL Query Generation</a></h3>
         <p class="authors"><strong>Papa Abdou Karim Karou Diallo</strong>, Amal Zouaq</p>
         <p class="tldr"><strong>TL;DR:</strong> Frame-based structured representations help SPARQL generation survive the lexical variation of real user questions.</p>
@@ -245,11 +255,11 @@ footer{
     </article>
 
     <article class="item">
-      <div class="side">
-        <div class="year">2025</div>
-        <div class="venue">NLDM</div>
+      <div class="thumb">
+        <a href="https://arxiv.org/abs/2502.12210"><img src="images/pub-frame-rag.png" alt="Frame detection figure"></a>
       </div>
       <div class="item-body">
+        <p class="stamp"><b>2025</b> · NLDM</p>
         <h3><a href="https://arxiv.org/abs/2502.12210">Enhancing Frame Detection with Retrieval Augmented Generation</a></h3>
         <p class="authors"><strong>Papa Abdou Karim Karou Diallo</strong>, Amal Zouaq</p>
         <p class="tldr"><strong>TL;DR:</strong> Retrieving candidate frames before generation improves frame detection over purely parametric approaches.</p>
@@ -259,11 +269,11 @@ footer{
     </article>
 
     <article class="item">
-      <div class="side">
-        <div class="year">2024</div>
-        <div class="venue">IEEE Access</div>
+      <div class="thumb">
+        <a href="https://ieeexplore.ieee.org/abstract/document/10662970"><img src="images/pub-sparql-eval.png" alt="SPARQL evaluation figure"></a>
       </div>
       <div class="item-body">
+        <p class="stamp"><b>2024</b> · IEEE Access</p>
         <h3><a href="https://ieeexplore.ieee.org/abstract/document/10662970">A Comprehensive Evaluation of Neural SPARQL Query Generation from Natural Language Questions</a></h3>
         <p class="authors"><strong>Papa Abdou Karim Karou Diallo</strong>, Samuel Reyd, Amal Zouaq</p>
         <p class="tldr"><strong>TL;DR:</strong> A systematic comparison of neural SPARQL generation methods, and what actually drives their performance.</p>
@@ -273,11 +283,11 @@ footer{
     </article>
 
     <article class="item">
-      <div class="side">
-        <div class="year">2020</div>
-        <div class="venue">IEEE ICCC</div>
+      <div class="thumb">
+        <a href="https://ieeexplore.ieee.org/document/9344949/"><img src="images/pub-covid.png" alt="K-EfficientNet figure"></a>
       </div>
       <div class="item-body">
+        <p class="stamp"><b>2020</b> · IEEE ICCC</p>
         <h3><a href="https://ieeexplore.ieee.org/document/9344949/">Accurate Detection of COVID-19 Using K-EfficientNet Deep Learning Image Classifier and K-COVID Chest X-Ray Images Dataset</a></h3>
         <p class="authors"><strong>Papa Abdou Karim Karou Diallo</strong>, Yun Ju</p>
         <p class="tldr"><strong>TL;DR:</strong> An EfficientNet-based classifier and a curated chest X-ray dataset for COVID-19 detection.</p>
@@ -303,11 +313,11 @@ footer{
     <h2>Teaching &amp; Outreach</h2>
 
     <article class="item">
-      <div class="side">
-        <div class="year">2025 —</div>
-        <div class="venue">IVADO</div>
+      <div class="thumb">
+        <img src="images/teach-ivado.png" alt="IVADO library workshop">
       </div>
       <div class="item-body">
+        <p class="stamp"><b>2025 —</b> · IVADO</p>
         <h3>AI Educator, Public Libraries of Quebec</h3>
         <p class="tldr">I run <a href="https://drive.google.com/file/d/1un19PVUMSJ1lPh996mn5HXHiT2p_tUUu/view?usp=sharing">public workshops</a> in libraries across Quebec on how AI works, where it is heading, and how to use it responsibly — for audiences with no technical background.</p>
         <p class="links"><a href="https://ivado.ca/2025/04/30/les-bibliotheques-de-montreal-pour-democratiser-lia/">Read about the program</a></p>
@@ -315,11 +325,11 @@ footer{
     </article>
 
     <article class="item">
-      <div class="side">
-        <div class="year">2026 —</div>
-        <div class="venue">Mila &amp; PPF</div>
+      <div class="thumb">
+        <a href="https://mila.quebec/en/continuing-education/ai-advantage-productivity-in-public-service"><img src="images/teach-ai-advantage.png" alt="AI Advantage workshop"></a>
       </div>
       <div class="item-body">
+        <p class="stamp"><b>2026 —</b> · Mila &amp; PPF</p>
         <h3><a href="https://mila.quebec/en/continuing-education/ai-advantage-productivity-in-public-service">Teaching Assistant, AI Advantage: Productivity in Public Service</a></h3>
         <p class="tldr">A continuing education workshop run by Mila and the Public Policy Forum, where public servants learn to map generative AI onto their own workflows. I support participants during the online sessions and give feedback on their assignments.</p>
         <p class="links"><a href="https://mila.quebec/en/continuing-education/ai-advantage-productivity-in-public-service">Program page</a></p>
@@ -327,33 +337,33 @@ footer{
     </article>
 
     <article class="item">
-      <div class="side">
-        <div class="year">2026 —</div>
-        <div class="venue">Mila</div>
+      <div class="thumb">
+        <img src="images/teach-labrep.png" alt="Mila lab representatives">
       </div>
       <div class="item-body">
+        <p class="stamp"><b>2026 —</b> · Mila</p>
         <h3>Lab Representative</h3>
         <p class="tldr">I carry student feedback to Mila's administration and work on initiatives around student well-being, inclusion, and community life.</p>
       </div>
     </article>
 
     <article class="item">
-      <div class="side">
-        <div class="year">2024 – 2026</div>
-        <div class="venue">Polytechnique</div>
+      <div class="thumb">
+        <img src="images/teach-inf8460.png" alt="INF8460 course">
       </div>
       <div class="item-body">
+        <p class="stamp"><b>2024 – 2026</b> · Polytechnique</p>
         <h3>Teaching Assistant, INF8460 — Natural Language Processing</h3>
         <p class="tldr">Designed assignments and tutorials, ran lab sessions, and graded coursework and exams.</p>
       </div>
     </article>
 
     <article class="item">
-      <div class="side">
-        <div class="year">2021 – 2022</div>
-        <div class="venue">Beijing</div>
+      <div class="thumb">
+        <a href="https://lfipekin.org"><img src="images/teach-lfip.png" alt="Arduino coding class"></a>
       </div>
       <div class="item-body">
+        <p class="stamp"><b>2021 – 2022</b> · Beijing</p>
         <h3><a href="https://lfipekin.org">Coding Teacher, Lycée Français International Charles de Gaulle de Pékin</a></h3>
         <p class="authors" lang="zh-CN">北京法国国际学校</p>
         <p class="tldr">Taught programming with Arduino and Scratch, and built hands-on projects that let students apply each concept right after learning it.</p>
