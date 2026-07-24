@@ -12,9 +12,7 @@
   (function(){
     var t = null;
     try { t = localStorage.getItem('theme'); } catch(e) {}
-    if (t !== 'light' && t !== 'dark') {
-      t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    }
+    if (t !== 'light' && t !== 'dark') { t = 'light'; }   // clair par defaut
     document.documentElement.setAttribute('data-theme', t);
   })();
 </script>
@@ -31,14 +29,7 @@
   --radius:10px;
   --maxw:820px;
 }
-/* Repli si JavaScript est desactive : on suit le systeme */
-@media (prefers-color-scheme: dark){
-  :root{
-    --bg:#121317; --bg-alt:#191b20; --text:#e9e9e6; --muted:#9aa1af;
-    --line:#2a2d34; --accent:#7fc0dd; --accent-soft:#1b2b33;
-  }
-}
-/* Choix explicite de l'utilisateur : prioritaire sur le systeme */
+/* Choix explicite de l'utilisateur, memorise dans le navigateur */
 :root[data-theme="light"]{
   --bg:#ffffff; --bg-alt:#f7f7f5; --text:#16181d; --muted:#6a7080;
   --line:#e4e4e0; --accent:#1d5c7a; --accent-soft:#e8f1f5;
@@ -121,8 +112,7 @@ p{margin:0 0 14px}
 .photo{width:210px;flex-shrink:0}
 .photo img{
   width:100%;height:auto;
-  border-radius:var(--radius);aspect-ratio:1/1;object-fit:cover;
-  background:var(--bg-alt);border:1px solid var(--line);
+  aspect-ratio:1/1;object-fit:cover;
 }
 .meta{font-size:.93rem;color:var(--muted);margin:0 0 4px}
 .meta strong{color:var(--text);font-weight:600}
