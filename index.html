@@ -135,11 +135,10 @@ p{margin:0 0 14px}
 @media (hover:hover){
   .item:hover{background:var(--card-hover)}
 }
-.thumb{width:215px;flex-shrink:0}
+.thumb{width:215px;flex-shrink:0;align-self:flex-start}
 .thumb img{
-  display:block;width:100%;aspect-ratio:16/10;
-  object-fit:contain;          /* figure entiere visible, jamais rognee */
-  padding:8px;background:#fff;
+  display:block;width:100%;height:auto;   /* hauteur naturelle : figure jamais rognee */
+  background:#fff;
   border-radius:8px;border:1px solid var(--line);
 }
 .stamp{font-size:.82rem;color:var(--muted);margin:0 0 6px}
