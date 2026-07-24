@@ -33,10 +33,12 @@
 :root[data-theme="light"]{
   --bg:#ffffff; --bg-alt:#f7f7f5; --text:#16181d; --muted:#6a7080;
   --line:#e4e4e0; --accent:#1d5c7a; --accent-soft:#e8f1f5;
+  --card:#f6f6f4; --card-hover:#eaeae6;
 }
 :root[data-theme="dark"]{
   --bg:#121317; --bg-alt:#191b20; --text:#e9e9e6; --muted:#9aa1af;
   --line:#2a2d34; --accent:#7fc0dd; --accent-soft:#1b2b33;
+  --card:#1a1c22; --card-hover:#23262e;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:80px}
@@ -124,19 +126,19 @@ p{margin:0 0 14px}
 
 /* ---------- Entries (publications, roles) ---------- */
 .item{
-  display:flex;gap:24px;
-  padding:22px 18px;margin:0 -18px;      /* deborde du texte pour la surbrillance */
-  border-bottom:1px solid var(--line);border-radius:12px;
+  display:flex;gap:22px;
+  padding:20px;margin:0 0 14px;
+  background:var(--card);border-radius:14px;
   transition:background-color .25s ease;
 }
-.item:last-child{border-bottom:0}
+.item:last-child{margin-bottom:0}
 @media (hover:hover){
-  .item:hover{background-color:var(--bg-alt)}
+  .item:hover{background:var(--card-hover)}
 }
 .thumb{width:180px;flex-shrink:0}
 .thumb img{
   display:block;width:100%;aspect-ratio:16/10;object-fit:cover;
-  border-radius:8px;border:1px solid var(--line);background:var(--bg-alt);
+  border-radius:8px;border:1px solid var(--line);background:var(--bg);
 }
 .stamp{font-size:.82rem;color:var(--muted);margin:0 0 6px}
 .stamp b{color:var(--text);font-weight:600}
@@ -162,6 +164,26 @@ p{margin:0 0 14px}
   .item{flex-direction:column;gap:14px}
   .thumb{width:100%}
 }
+
+/* ---------- Separateur : fragment de graphe de connaissances ---------- */
+.separator{padding:8px 0 4px}
+.separator svg{display:block;width:100%;height:auto;overflow:visible}
+.separator + section{border-top:0;padding-top:20px}
+.kg-baseline{stroke:var(--line);stroke-width:1.2;stroke-dasharray:6 7}
+.kg-edge{stroke:var(--line);stroke-width:1.6;fill:none;stroke-linecap:round}
+.kg-edge.on{stroke:var(--accent);stroke-width:2.4}
+.kg-node{fill:var(--bg);stroke:var(--muted);stroke-width:1.6}
+.kg-node.on{fill:var(--accent);stroke:var(--accent)}
+.kg-node.small{r:3;stroke-width:1.3}
+@media (prefers-reduced-motion:no-preference){
+  .kg-edge{stroke-dasharray:1;stroke-dashoffset:1;animation:kg-draw .9s ease forwards}
+  .kg-node{opacity:0;animation:kg-pop .45s ease forwards}
+  .kg-baseline{opacity:0;animation:kg-fade 1s ease .2s forwards}
+}
+@keyframes kg-draw{to{stroke-dashoffset:0}}
+@keyframes kg-pop{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:scale(1)}}
+@keyframes kg-fade{to{opacity:1}}
+.kg-node{transform-box:fill-box;transform-origin:center}
 
 /* ---------- News & education lists ---------- */
 .row{padding:12px 0;border-bottom:1px solid var(--line);font-size:.95rem}
@@ -218,9 +240,41 @@ footer{
       <p class="meta"><strong>Elsewhere:</strong> <a href="https://scholar.google.com/citations?user=XAIiidIAAAAJ&amp;hl=en">Google Scholar</a> · <a href="https://github.com/karou28">GitHub</a> · <a href="https://www.linkedin.com/in/karou-diallo-9240a417b/">LinkedIn</a> · <a href="https://www.overleaf.com/read/fngnshywkszf#a6decd">CV</a></p>
     </div>
     <div class="photo">
-      <img src="images/me2.png" alt="Portrait of Karou Diallo" width="640" height="640">
+      <img src="images/me.png" alt="Portrait of Karou Diallo" width="640" height="640">
     </div>
   </section>
+
+  <!-- ============ SEPARATEUR ============ -->
+  <div class="separator" aria-hidden="true">
+    <svg viewBox="0 0 1000 74" xmlns="http://www.w3.org/2000/svg" role="presentation">
+    <line class="kg-baseline" x1="0" y1="37" x2="1000" y2="37"/>
+    <line class="kg-edge" x1="40" y1="46" x2="152" y2="30" pathLength="1" style="animation-delay:0.0s"/>
+    <line class="kg-edge" x1="152" y1="30" x2="268" y2="52" pathLength="1" style="animation-delay:0.1s"/>
+    <line class="kg-edge on" x1="268" y1="52" x2="384" y2="24" pathLength="1" style="animation-delay:0.2s"/>
+    <line class="kg-edge on" x1="384" y1="24" x2="504" y2="44" pathLength="1" style="animation-delay:0.3s"/>
+    <line class="kg-edge on" x1="504" y1="44" x2="622" y2="20" pathLength="1" style="animation-delay:0.4s"/>
+    <line class="kg-edge on" x1="622" y1="20" x2="738" y2="48" pathLength="1" style="animation-delay:0.5s"/>
+    <line class="kg-edge" x1="738" y1="48" x2="856" y2="28" pathLength="1" style="animation-delay:0.6s"/>
+    <line class="kg-edge" x1="856" y1="28" x2="962" y2="44" pathLength="1" style="animation-delay:0.7s"/>
+    <line class="kg-edge" x1="152" y1="30" x2="196" y2="64" pathLength="1" style="animation-delay:0.3s"/>
+    <line class="kg-edge" x1="384" y1="24" x2="446" y2="62" pathLength="1" style="animation-delay:0.45s"/>
+    <line class="kg-edge" x1="738" y1="48" x2="690" y2="10" pathLength="1" style="animation-delay:0.65s"/>
+    <line class="kg-edge" x1="856" y1="28" x2="812" y2="62" pathLength="1" style="animation-delay:0.75s"/>
+    <circle class="kg-node" cx="40" cy="46" r="5" style="animation-delay:0.15s"/>
+    <circle class="kg-node" cx="152" cy="30" r="5" style="animation-delay:0.25s"/>
+    <circle class="kg-node" cx="268" cy="52" r="5" style="animation-delay:0.35s"/>
+    <circle class="kg-node on" cx="384" cy="24" r="5" style="animation-delay:0.45s"/>
+    <circle class="kg-node on" cx="504" cy="44" r="5" style="animation-delay:0.55s"/>
+    <circle class="kg-node on" cx="622" cy="20" r="5" style="animation-delay:0.65s"/>
+    <circle class="kg-node on" cx="738" cy="48" r="5" style="animation-delay:0.75s"/>
+    <circle class="kg-node" cx="856" cy="28" r="5" style="animation-delay:0.85s"/>
+    <circle class="kg-node" cx="962" cy="44" r="5" style="animation-delay:0.95s"/>
+    <circle class="kg-node small" cx="196" cy="64" r="3" style="animation-delay:0.5s"/>
+    <circle class="kg-node small" cx="446" cy="62" r="3" style="animation-delay:0.65s"/>
+    <circle class="kg-node small" cx="690" cy="10" r="3" style="animation-delay:0.85s"/>
+    <circle class="kg-node small" cx="812" cy="62" r="3" style="animation-delay:0.95s"/>
+    </svg>
+  </div>
 
   <!-- ============ PUBLICATIONS ============ -->
   <section id="publications">
